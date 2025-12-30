@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from './components/Navbar'
-import HeroSection from './components/HeroSection'
-import FilmList from './components/FilmList'
-import FilmRank from './components/FilmRank'
-import Footer from './components/Footer'
-import ContinueWatch from './components/ContinueWatch'
+import Navbar from './components/homepage/Navbar'
+import HeroSection from './components/homepage/HeroSection'
+import FilmList from './components/homepage/FilmList'
+import FilmRank from './components/homepage/FilmRank'
+import ContinueWatch from './components/homepage/ContinueWatch'
+import Footer from './components/homepage/Footer'
 
 export default function Homepage() {
 
-  // Popular
   const [popularMovie, setPopularMovie] = useState([]);
   const [upcomingMovie, setUpcomingMovie] = useState([]);
   const [topRatedMovie, setTopRatedMovie] = useState([]);
 
+  // API Popular Movie
   const getPopularMovie = () => {
     const options = {
       method: 'GET',
@@ -28,6 +28,7 @@ export default function Homepage() {
       .catch(err => console.error(err));
   }
 
+  // API Upcoming Movie
   const getUpcomingMovie = () => {
     const options = {
       method: 'GET',
@@ -42,7 +43,7 @@ export default function Homepage() {
       .then(res => setUpcomingMovie(res.results))
       .catch(err => console.error(err));
   }
-
+  // API Top Rated
   const getTopRated = () => {
     const options = {
       method: 'GET',
