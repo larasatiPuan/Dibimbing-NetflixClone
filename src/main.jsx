@@ -5,13 +5,15 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import Homepage from './homepage';
 import Login from './Login';
-import MovieDetails from './components/homepage/MovieDetails';
+import Profile from './Profile';
+import AuthCallback from './AuthCallback';
 
 const router = createBrowserRouter([
   {path:"/", element:<Login/>},
+  {path: "auth", element:<AuthCallback/>},
   {path:"/homepage", element:<Homepage/>},
-  {path:"/movieDetails", element:<MovieDetails/>},
-  {path:"/login", element:<Login/>}
+  {path:"/login", element:<Login/>},
+  {path:"/profile", element:<Profile/>}
 ]);
 
 

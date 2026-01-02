@@ -12,6 +12,7 @@ export default function Homepage() {
   const [upcomingMovie, setUpcomingMovie] = useState([]);
   const [topRatedMovie, setTopRatedMovie] = useState([]);
 
+
   // API Popular Movie
   const getPopularMovie = () => {
     const options = {

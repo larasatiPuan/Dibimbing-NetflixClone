@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const menu = ["Home", "Tv Shows", "Movies", "New & Popular", "My List", "Browse by Languages"];
 
 export default function Navbar({active = "Home", avatar = "/assets/images/Profile.png"}) {
+
+  // Profile
+    const [profile, setProfile] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTMzMTMzYTBiY2YwY2UzMjBhMzUzMzJmNzdiZDVkZiIsIm5iZiI6MTc2NzAyMTAxNi44MDcwMDAyLCJzdWIiOiI2OTUyOTlkODQ2NmMzOTY2Yjk3MGZhMjgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.swM4phsAYMyYukkr8T_idMWhkZ3jBwh0f1KIjywmZ2g'
+            }
+        };
+    
+        fetch('https://api.themoviedb.org/3/account/22599870', options)
+        .then(res => res.json())
+        .then(res => setProfile(res))
+        .catch(err => console.error(err));
+    }, [])
+
   return (
     <div data-type="HomePgae" className="fixed z-50 inline-flex items-center justify-between w-full h-16 px-14 bg-gradient-to-b from-neutral-900 via-neutral-900/90 to-neutral-900/0">
         {/* left section */}
@@ -45,10 +66,18 @@ export default function Navbar({active = "Home", avatar = "/assets/images/Profil
             </div>
 
             {/* profile */}
-            <div data-size="Small" data-type="UserProfileMenu" className="flex items-center justify-between w-12">
+            <div data-size="Small" data-type="UserProfileMenu" className="flex items-center justify-between w-12 hover:cursor-pointer" onClick={()=>{navigate("/profile")}}>
                 <div className="relative w-8 h-8 overflow-hidden bg-white rounded-sm">
                     <div data-size="Small" data-type="UserProfilePicture" className="absolute top-0 left-0 w-8 h-8">
-                        <img className="absolute top-0 left-0 w-8 h-8 rounded-sm" src={avatar} alt='profile'/>
+                        <img
+                        className="absolute top-0 left-0 w-8 h-8 rounded-sm"
+                        src={
+                            profile?.avatar?.tmdb?.avatar_path
+                            ? `https://image.tmdb.org/t/p/original${profile.avatar.tmdb.avatar_path}`
+                            : avatar
+                        }
+                        alt="profile"
+                        />
                     </div>
                 </div>
                 <div className="w-2.5 h-1.5 relative">
