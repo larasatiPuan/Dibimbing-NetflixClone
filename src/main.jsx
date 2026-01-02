@@ -7,13 +7,15 @@ import Homepage from './homepage';
 import Login from './Login';
 import Profile from './Profile';
 import AuthCallback from './AuthCallback';
+import MovieNotes from './MovieNotes';
 
 const router = createBrowserRouter([
   {path:"/", element:<Login/>},
   {path: "auth", element:<AuthCallback/>},
   {path:"/homepage", element:<Homepage/>},
   {path:"/login", element:<Login/>},
-  {path:"/profile", element:<Profile/>}
+  {path:"/profile", element:<Profile/>},
+  {path:"/movie-notes", element:<MovieNotes/>}
 ]);
 
 

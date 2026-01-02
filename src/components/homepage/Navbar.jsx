@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const menu = ["Home", "Tv Shows", "Movies", "New & Popular", "My List", "Browse by Languages"];
+// const menu = ["Home", "Tv Shows", "Movies", "New & Popular", "My List", "Browse by Languages"];
+const menu = [
+    {
+        name: "Homepage",
+        path : "/homepage"   
+    },
+    {
+        name : "Movie Notes",
+        path : "/movie-notes"
+    },
+    {
+        name : "Profile",
+        path : "/profile"
+    }
+    ];
 
 export default function Navbar({active = "Home", avatar = "/assets/images/Profile.png"}) {
 
@@ -38,7 +52,7 @@ export default function Navbar({active = "Home", avatar = "/assets/images/Profil
                 {
                     menu.map((value, index)=>(
                         // Notes : Jika aktif menggunakan text-white font-medium
-                        <a href='#' className="justify-center text-sm font-normal leading-4 text-neutral-200 hover:underline hover:underline-offset-4" key={index}>{value}</a>
+                        <a href={value.path} className="justify-center text-sm font-normal leading-4 text-neutral-200 hover:underline hover:underline-offset-4" key={index}>{value?.name}</a>
                     ))
                 }
             </div>
